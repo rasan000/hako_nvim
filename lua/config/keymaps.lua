@@ -1,3 +1,7 @@
+-- Keymaps are automatically loaded on the VeryLazy event
+-- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
+-- Add any additional keymaps here
+
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
@@ -11,14 +15,6 @@ map({ "n", "x" }, "D", '"_D', opts)
 map({ "n", "x" }, "c", '"_c', opts)
 map({ "n" }, "C", '"_C', opts)
 
--- move keys
-map("n", "<S-h>", "^", opts)
-map("n", "<S-l>", "$", opts)
-map("v", "<S-h>", "^", opts)
-map("v", "<S-l>", "$", opts)
-map("n", "<Tab>", "%", opts)
-map("v", "<Tab>", "%", opts)
-
 -- normalモードでのxは削除
 -- visualモードでのxは切り取り
 map({ "n" }, "x", '"_x', opts)
@@ -31,8 +27,8 @@ map({ "n", "v" }, ":", ";", opts)
 -- row select
 map("n", "vv", "<S-v>", opts)
 
--- disable hilihgt
-map({ "n", "x" }, "<leader>n", ":noh<CR>", opts)
+-- row select
+map("i", "jk", "<ESC>", opts)
 
 -- replace
 map("n", "<C-g>", ":%s///g<left><left><Left>", opts)
@@ -52,5 +48,10 @@ map("n", "<F3>", ":set relativenumber!<CR>", opts)
 map("n", "<leader>n", "<Cmd>noh<CR>", opts)
 
 -- comment
-map("n", "<leader>/", "gcc", { noremap = true, silent = true })
-map("v", "<leader>/", "gc", { noremap = true, silent = true })
+map("n", "<leader>/", "gcc", { remap = true, silent = true })
+map("v", "<leader>/", "gc", { remap = true, silent = true })
+
+-- explorer
+map("n", "<C-e>", function()
+    Snacks.explorer()
+end, { desc = "Explorer" })

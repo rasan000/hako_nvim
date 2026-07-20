@@ -1,3 +1,7 @@
+-- Options are automatically loaded before lazy.nvim startup
+-- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
+-- Add any additional options here
+
 -- encoding
 vim.opt.fileencoding = "utf-8"
 vim.scriptencoding = "utf-8"
@@ -67,7 +71,7 @@ vim.opt.showmatch = true
 
 -- use mouse
 vim.opt.mouse = "a"
-vim.keymap.set('v', '<LeftRelease>', 'ygv')
+vim.keymap.set("v", "<LeftRelease>", "ygv")
 
 -- scroll settings
 vim.opt.scroll = 10 -- number of lines to scroll with Ctrl-u/Ctrl-d
@@ -86,10 +90,6 @@ vim.opt.swapfile = false
 -- title
 vim.opt.title = true
 
--- undo file persistence
--- vim.opt.undofile = true
--- vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
-
 -- cursor position restore
 vim.api.nvim_create_autocmd("BufRead", {
     callback = function()
@@ -106,25 +106,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end,
 })
 
--- -- disable new line comment
--- vim.api.nvim_create_autocmd("FileType", {
--- 	pattern = "*",
--- 	callback = function()
--- 		vim.opt_local.formatoptions:remove({ "r", "o" })
--- 	end,
--- })
-
 -- wrap and side scroll
 vim.opt.wrap = false
 vim.opt.sidescroll = 1
-
--- visualize whitespace
-vim.opt.list = true
-vim.opt.listchars = {
-    tab = "▸ ",
-    trail = "·",
-    eol = "↲",
-    extends = "…",
-    precedes = "…",
-    space = "·",
-}
