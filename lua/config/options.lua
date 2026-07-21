@@ -1,7 +1,3 @@
--- Options are automatically loaded before lazy.nvim startup
--- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
-
 -- encoding
 vim.opt.fileencoding = "utf-8"
 vim.scriptencoding = "utf-8"
@@ -21,16 +17,16 @@ vim.opt.showtabline = 1
 -- auto read
 vim.opt.autoread = true
 vim.api.nvim_create_autocmd({ "WinEnter", "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
-    pattern = "*",
-    command = "checktime",
+  pattern = "*",
+  command = "checktime",
 })
 
 -- Automatically reload files when they change on disk
 vim.api.nvim_create_autocmd({ "FileChangedShellPost" }, {
-    pattern = "*",
-    callback = function()
-        vim.notify("File changed on disk. Buffer reloaded.", vim.log.levels.WARN)
-    end,
+  pattern = "*",
+  callback = function()
+    vim.notify("File changed on disk. Buffer reloaded.", vim.log.levels.WARN)
+  end,
 })
 
 -- Check for file changes more frequently
@@ -53,16 +49,6 @@ vim.opt.expandtab = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.whichwrap = "b,s,h,l,<,>,[,]~"
-
--- for yaml, markdown
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "markdown", "yaml", "yml" },
-    callback = function()
-        vim.opt_local.tabstop = 2
-        vim.opt_local.shiftwidth = 2
-        vim.opt_local.softtabstop = 2
-    end,
-})
 
 -- search
 vim.opt.ignorecase = true
@@ -90,22 +76,16 @@ vim.opt.swapfile = false
 -- title
 vim.opt.title = true
 
--- cursor position restore
-vim.api.nvim_create_autocmd("BufRead", {
-    callback = function()
-        vim.api.nvim_exec('silent! normal! g`"zv', false)
-    end,
-})
-
-vim.opt.inccommand = split
-
--- hilight yank
-vim.api.nvim_create_autocmd("TextYankPost", {
-    callback = function()
-        vim.highlight.on_yank({ higroup = "IncSearch", timeout = 500 })
-    end,
-})
+vim.opt.inccommand = "split"
 
 -- wrap and side scroll
 vim.opt.wrap = false
 vim.opt.sidescroll = 1
+
+-- trail
+vim.opt.list = true
+vim.opt.listchars:append({
+  space = "·",
+  tab = "→ ",
+  trail = "·",
+})

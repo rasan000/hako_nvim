@@ -1,7 +1,3 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
-
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
@@ -27,8 +23,8 @@ map({ "n", "v" }, ":", ";", opts)
 -- row select
 map("n", "vv", "<S-v>", opts)
 
--- row select
-map("i", "jk", "<ESC>", opts)
+-- disable hilihgt
+map({ "n", "x" }, "<leader>n", ":noh<CR>", opts)
 
 -- replace
 map("n", "<C-g>", ":%s///g<left><left><Left>", opts)
@@ -53,5 +49,5 @@ map("v", "<leader>/", "gc", { remap = true, silent = true })
 
 -- explorer
 map("n", "<C-e>", function()
-    Snacks.explorer()
+  Snacks.explorer()
 end, { desc = "Explorer" })
