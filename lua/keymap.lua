@@ -1,6 +1,5 @@
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
-
 -- leader key をスペースに設定
 vim.g.mapleader = " "
 
@@ -48,6 +47,4 @@ map("n", "<leader>/", "gcc", { remap = true, silent = true })
 map("v", "<leader>/", "gc", { remap = true, silent = true })
 
 -- explorer
-map("n", "<C-e>", function()
-  Snacks.explorer()
-end, { desc = "Explorer" })
+map("n", "<C-e>", "<Cmd>Ex<CR>")

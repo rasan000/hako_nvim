@@ -1,2 +1,5 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
-require("config.lazy")
+-- open nvim init.lua file
+require("option")
+require("keymap")
+require("autocmd")
+require("plugin")
