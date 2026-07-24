@@ -14,18 +14,19 @@ return { -- color scheme
         })
         vim.cmd([[colorscheme tokyonight-moon]])
     end
-}, -- nvim-web-devicons (use basic ASCII icons for compatibility)
+}, -- icons
 {
-    "nvim-tree/nvim-web-devicons",
-    opts = {
-        color_icons = true,
-        default = true,
-        strict = false
-    }
+    "nvim-mini/mini.icons",
+    lazy = false,
+    config = function()
+        local icons = require("mini.icons")
+        icons.setup()
+        icons.mock_nvim_web_devicons()
+    end,
 }, -- lualine
 {
     "nvim-lualine/lualine.nvim",
-    dependencies = {"nvim-tree/nvim-web-devicons"},
+    dependencies = {"nvim-mini/mini.icons"},
     opts = {
         options = {
             theme = "tokyonight",

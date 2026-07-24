@@ -12,28 +12,6 @@ local servers = {
 	"terraformls",
 }
 
--- lspAttach
-local function on_lsp_attach(args)
-	local bufnr = args.buf
-	local map = function(mode, lhs, rhs, desc)
-		vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, silent = true, desc = desc })
-	end
-
-	map("n", "K", vim.lsp.buf.hover, "LSP hover")
-	map("n", "gd", vim.lsp.buf.definition, "Go to definition")
-	map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
-	map("n", "gr", vim.lsp.buf.references, "List references")
-	map("n", "<leader>rn", vim.lsp.buf.rename, "Rename symbol")
-	map({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, "Code action")
-	map("n", "ge", vim.diagnostic.open_float, "Show diagnostic")
-	map("n", "g[", function()
-		vim.diagnostic.jump({ count = -1, float = true })
-	end, "Previous diagnostic")
-	map("n", "g]", function()
-		vim.diagnostic.jump({ count = 1, float = true })
-	end, "Next diagnostic")
-end
-
 -- lsp
 return {
 	{
@@ -55,16 +33,77 @@ return {
 			automatic_enable = servers,
 		},
 		config = function(_, opts)
+			-- complition
 			vim.lsp.config("*", {
 				capabilities = require("blink.cmp").get_lsp_capabilities(),
 			})
 
+			-- keymap
 			local group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true })
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = group,
-				callback = on_lsp_attach,
+				callback = function(args)
+					vim.keymap.set("n", "K", vim.lsp.buf.hover, {
+						buffer = args.buf,
+						silent = true,
+						desc = "LSP hover",
+					})
+
+					vim.keymap.set("n", "gd", vim.lsp.buf.definition, {
+						buffer = args.buf,
+						silent = true,
+						desc = "Go to definition",
+					})
+
+					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {
+						buffer = args.buf,
+						silent = true,
+						desc = "Go to declaration",
+					})
+
+					vim.keymap.set("n", "gr", vim.lsp.buf.references, {
+						buffer = args.buf,
+						silent = true,
+						desc = "List references",
+					})
+
+					vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {
+						buffer = args.buf,
+						silent = true,
+						desc = "Rename symbol",
+					})
+
+					vim.keymap.set({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, {
+						buffer = args.buf,
+						silent = true,
+						desc = "Code action",
+					})
+
+					vim.keymap.set("n", "ge", vim.diagnostic.open_float, {
+						buffer = args.buf,
+						silent = true,
+						desc = "Show diagnostic",
+					})
+
+					vim.keymap.set("n", "g[", function()
+						vim.diagnostic.jump({ count = -1, float = true })
+					end, {
+						buffer = args.buf,
+						silent = true,
+						desc = "Previous diagnostic",
+					})
+
+					vim.keymap.set("n", "g]", function()
+						vim.diagnostic.jump({ count = 1, float = true })
+					end, {
+						buffer = args.buf,
+						silent = true,
+						desc = "Next diagnostic",
+					})
+				end,
 			})
 
+			-- diagnostic
 			vim.diagnostic.config({
 				underline = true,
 				update_in_insert = false,
@@ -79,6 +118,7 @@ return {
 				},
 			})
 
+			--cloudformation
 			vim.lsp.config("cfn-lsp-extra", {
 				cmd = { "mise", "exec", "--", "cfn-lsp-extra" },
 				filetypes = { "yaml.cloudformation", "json.cloudformation" },
@@ -92,6 +132,8 @@ return {
 			require("mason-lspconfig").setup(opts)
 		end,
 	},
+
+	-- tools
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		dependencies = { "mason-org/mason.nvim" },
