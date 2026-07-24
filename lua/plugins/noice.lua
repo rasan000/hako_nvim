@@ -14,17 +14,8 @@ return {
         { desc = "Dismiss notifications" })
 
       require("noice").setup({
-        -- classic cmdline
-        cmdline = {
-          view = "cmdline",
-        },
         messages = {
           enabled = true,
-          view = "mini",
-          view_error = "mini",
-          view_warn = "mini",
-          view_history = "messages",
-          view_search = "virtualtext",
         },
         lsp = {
           override = {
@@ -35,30 +26,10 @@ return {
         },
         presets = {
           bottom_search = true,
-          command_palette = false,
-          long_message_to_split = false,
+          command_palette = true,
+          long_message_to_split = true,
           inc_rename = false,
-          lsp_doc_border = true,
-        },
-        -- hidden messages
-        routes = {
-          {
-            filter = {
-              any = {
-                { event = "msg_show", kind = "emsg",      find = "E486:" },
-                { event = "msg_show", kind = "emsg",      find = "E492:" },
-                { event = "msg_show", kind = "emsg",      find = "end_col" },
-                { event = "msg_show", kind = "",          find = "written" },
-                { event = "notify",   kind = "warn",      find = "Config" },
-                -- deprecated message
-                { event = "msg_show", kind = "",          find = "vim%.tbl_islist" },
-                { event = "msg_show", kind = "warn",      find = "vim%.tbl_islist" },
-                { event = "msg_show", kind = "echo",      find = "tbl_islist" },
-                { event = "msg_show", find = "deprecated" },
-              }
-            },
-            opts = { skip = true },
-          },
+          lsp_doc_border = false,
         },
       })
       -- noice keymaps

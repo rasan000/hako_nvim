@@ -1,5 +1,4 @@
 return {
-
     --barbar
     {
         "romgrk/barbar.nvim",

@@ -1,32 +1,4 @@
 return {
-
-    -- persistence
-    {
-        "folke/persistence.nvim",
-        event = "BufReadPre", -- this will only start session saving when an actual file was opened
-        opts = {
-            -- add any custom options here
-        },
-    },
-
-    -- Harpoon - File bookmarks for quick navigation
-    {
-        "ThePrimeagen/harpoon",
-        branch = "harpoon2",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        config = function()
-            local harpoon = require("harpoon")
-            harpoon:setup()
-
-            vim.keymap.set("n", "<leader>a", function()
-                harpoon:list():add()
-            end, { desc = "Add current file to Harpoon" })
-            vim.keymap.set("n", "<C-h>", function()
-                harpoon.ui:toggle_quick_menu(harpoon:list())
-            end, { desc = "Toggle Harpoon quick menu" })
-        end,
-    },
-
     -- Dressing - Better UI for vim.ui.select and vim.ui.input
     {
         "stevearc/dressing.nvim",
@@ -60,14 +32,5 @@ return {
                 },
             })
         end,
-    },
-
-    -- Fidget - LSP progress notifications
-    {
-        "j-hui/fidget.nvim",
-        event = "LspAttach",
-        config = function()
-            require("fidget").setup({})
-        end,
-    },
+    }
 }

@@ -5,11 +5,11 @@ return {
         require("no-neck-pain").setup({
             buffers = {
                 right = {
-                    enabled = false,
+                    enabled = true,
                 },
                 scratchPad = {
-                    enabled = true,
-                    location = "~/notes",
+                    enabled = false,
+                    -- location = "~/notes",
                 },
                 bo = {
                     filetype = "md",
