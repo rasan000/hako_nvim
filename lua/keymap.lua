@@ -5,7 +5,6 @@ vim.g.mapleader = " "
 
 -- esc
 map("i", "jj", "<ESC>", opts)
-map("i", "jk", "<Cmd>wq<CR>", opts)
 
 -- d/c はヤンクさせない
 map({ "n", "x" }, "d", '"_d', opts)

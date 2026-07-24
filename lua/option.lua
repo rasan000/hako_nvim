@@ -4,6 +4,7 @@ opt.number = true
 opt.relativenumber = true
 opt.clipboard = "unnamedplus"
 opt.wildmenu = true
+opt.completeopt = { "menuone", "noselect", "popup" }
 opt.showcmd = true
 opt.showmatch = true
 opt.hidden = true
@@ -41,10 +42,10 @@ opt.shell = "/usr/bin/zsh"
 
 -- hilight yank
 vim.api.nvim_create_autocmd("TextYankPost", {
-    callback = function()
-        vim.highlight.on_yank({
-            higroup = "IncSearch",
-            timeout = 500
-        })
-    end
+  callback = function()
+    vim.highlight.on_yank({
+      higroup = "IncSearch",
+      timeout = 500
+    })
+  end
 })
