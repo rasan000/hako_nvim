@@ -20,15 +20,8 @@ return {
                 },
                 select = {
                     enabled = true,
-                    backend = { "telescope", "fzf_lua", "fzf", "builtin", "nui" },
+                    backend = { "builtin", "nui" },
                     trim_prompt = true,
-                    telescope = function()
-                        local ok, themes = pcall(require, "telescope.themes")
-                        if ok then
-                            return themes.get_ivy()
-                        end
-                        return {}
-                    end,
                 },
             })
         end,

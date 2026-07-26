@@ -21,6 +21,7 @@ opt.backup = false
 -- 表示
 opt.cursorline = true
 opt.hlsearch = true
+opt.scrolloff = 5
 
 -- インデント
 opt.tabstop = 4

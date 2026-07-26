@@ -37,7 +37,6 @@ return {
       vim.keymap.set("n", "<leader>nh", "<cmd>Noice history<cr>", { noremap = true, silent = true })
       vim.keymap.set("n", "<leader>ne", "<cmd>Noice errors<cr>", { noremap = true, silent = true })
       vim.keymap.set("n", "<leader>nd", "<cmd>Noice dismiss<cr>", { noremap = true, silent = true })
-      vim.keymap.set("n", "<leader>nt", "<cmd>Noice telescope<cr>", { noremap = true, silent = true })
     end,
   },
 }
