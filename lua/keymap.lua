@@ -13,6 +13,10 @@ map({ "n", "x" }, "D", '"_D', opts)
 map({ "n", "x" }, "c", '"_c', opts)
 map({ "n" }, "C", '"_C', opts)
 
+-- movement
+map({ "n", "v" }, "H", "^", opts)
+map({ "n", "v" }, "L", "$", opts)
+
 -- normalモードでのxは削除
 -- visualモードでのxは切り取り
 map({ "n" }, "x", '"_x', opts)
