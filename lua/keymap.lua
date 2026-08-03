@@ -4,7 +4,7 @@ local opts = { noremap = true, silent = true }
 vim.g.mapleader = " "
 
 -- esc
-map("i", "jj", "<ESC>", opts)
+map("i", "jk", "<ESC>", opts)
 
 -- d/c はヤンクさせない
 map({ "n", "x" }, "d", '"_d', opts)
