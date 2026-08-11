@@ -1,9 +1,11 @@
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
+
 -- leader key をスペースに設定
 vim.g.mapleader = " "
 
 -- esc
+map("i", "jj", "<ESC>", opts)
 map("i", "jk", "<ESC>", opts)
 
 -- d/c はヤンクさせない
@@ -12,6 +14,9 @@ map({ "n" }, "dd", '"_dd', opts)
 map({ "n", "x" }, "D", '"_D', opts)
 map({ "n", "x" }, "c", '"_c', opts)
 map({ "n" }, "C", '"_C', opts)
+
+-- sepalate window
+map({ "n","v" }, "<C-w><CR>", "<Cmd>vsplit<CR>", opts)
 
 -- movement
 map({ "n", "v" }, "H", "^", opts)
